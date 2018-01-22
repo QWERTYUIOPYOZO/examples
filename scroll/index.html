@@ -1,5 +1,5 @@
 <script>
-    var gears;
+    var gear;
     var lastPosition;
     var refreshRate = 60; // fps; reduce for less overhead
     var animation = "rotate(*deg)"; // css style to apply [Wildcard is *]
@@ -7,16 +7,14 @@
 
     function replace(){
         if(lastPosition != document.body.scrollTop){ // Prevents unnecessary recursion
-            for(gear of gears){
                 lastPosition = document.body.scrollTop; // updates the last position to current
                 gear.style.transform = animation.replace("*", Math.round(lastPosition * link)); // applies new style to the gear
-            }
         }
     }
 
     function setup(){
         lastPosition = document.body.scrollTop;
-        gears = document.querySelectorAll(".gear");
+        gear = document.querySelector(".gear");
         setInterval(replace, 1000 / refreshRate); // 1000 / 60 = 16.666... Invokes function replace to update for each frame
     }
     window.addEventListener("DOMContentLoaded", setup);
