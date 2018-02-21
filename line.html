@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bored</title>
+    <style>
+    body{
+        background: black;
+        color: rgba(255, 255, 255, 0.25);
+        overflow: hidden;
+    }
+    .bar{
+        position: absolute;
+        top: 0px;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.2);
+        animation: background 1.5s linear infinite;
+    }
+    .bar2{
+        position: absolute;
+        top: 0px;
+        width: 1px;
+        background: rgba(0, 0, 255, 0.5);
+        z-index: -1;
+        animation: background2 10s linear infinite;
+    }
+    #t2{
+        float: right;
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    @keyframes background2{
+        0%{
+            background: rgba(0, 0, 255, 0.5);
+        }
+        50%{
+            background: rgba(255, 0, 34, 0.5);
+        }
+        100%{
+            background: rgba(0, 0, 255, 0.5);
+        }
+    }
+    @keyframes background{
+        0%{
+            background: rgba(115, 115, 255, 0.5);
+        }
+        50%{
+            background: rgba(255, 115, 133, 0.5);
+        }
+        100%{
+            background: rgba(115, 115, 255, 0.5);
+        }
+    }
+    </style>
+</head>
+<body>
+    <script>
+        const maxInterval = window.prompt("Enter max speed (60fps or above is recommended):", 60);
+        var onInterval = function(){
+            var elements = document.querySelectorAll(".bar");
+            console.log(elements);
+            if(elements.length <= innerWidth){
+                var newElement = document.createElement("div");
+                newElement.className = "bar";
+                newElement.style.left = elements.length + "px";
+                newElement.style.transform = "rotate("+ elements.length * Math.random() * 10 +"deg)";
+                document.querySelector("#contentWrapper").appendChild(newElement);
+                for(i = 0; i < elements.length; i++){
+                    var height = Number(elements[i].style.height.replace("px",""));
+                    height = height + Math.ceil(Math.random() * 7.5);
+                    elements[i].style.height = height + "px";
+                }
+            }
+        }
+        var onInterval2 = function(){
+            var elements = document.querySelectorAll(".bar2");
+            console.log(elements);
+            if(elements.length <= innerWidth){
+                var newElement = document.createElement("div");
+                document.querySelector("#t2").innerText = elements.length + " / " + innerWidth;
+                newElement.className = "bar2";
+                newElement.style.right = elements.length + "px";
+                newElement.style.transform = "rotate(-"+ Math.random() * 10 +"deg)";
+                document.querySelector("#contentWrapper").appendChild(newElement);
+                for(i = 0; i < elements.length; i++){
+                    var height = Number(elements[i].style.height.replace("px",""));
+                    height = height + Math.ceil(Math.random() * 7.5);
+                    elements[i].style.height = height + "px";
+                }
+            }
+            else{
+                document.querySelector("#t2").innerText = "";
+            }
+        }
+        var start = function(){
+            setInterval(onInterval, 1000 / maxInterval);
+            setInterval(onInterval2, 1000 / maxInterval);
+        }
+        window.onload = start;
+    </script>
+    <div id="t1"></div>
+    <div id="t2"></div>
+    <div id="contentWrapper">
+    </div>
+</body>
+</html>
