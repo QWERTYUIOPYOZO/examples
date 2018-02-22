@@ -7,14 +7,13 @@
     <style>
     body{
         background: black;
-        color: rgba(255, 255, 255, 0.25);
+        color: rgba(255, 255, 255, 0.4);
         overflow: hidden;
     }
     .bar{
         position: absolute;
         top: 0px;
         width: 1px;
-        background: rgba(255, 255, 255, 0.2);
         animation: background 1.5s linear infinite;
     }
     .bar2{
@@ -32,31 +31,31 @@
     }
     @keyframes background2{
         0%{
-            background: rgba(0, 0, 255, 0.5);
+            background: rgba(0, 0, 255, 0.6);
         }
         50%{
-            background: rgba(255, 0, 34, 0.5);
+            background: rgba(255, 0, 34, 0.6);
         }
         100%{
-            background: rgba(0, 0, 255, 0.5);
+            background: rgba(0, 0, 255, 0.6);
         }
     }
     @keyframes background{
         0%{
-            background: rgba(115, 115, 255, 0.5);
+            background: rgba(115, 115, 255, 0.6);
         }
         50%{
-            background: rgba(255, 115, 133, 0.5);
+            background: rgba(255, 115, 133, 0.6);
         }
         100%{
-            background: rgba(115, 115, 255, 0.5);
+            background: rgba(115, 115, 255, 0.6);
         }
     }
     </style>
 </head>
 <body>
     <script>
-        const maxInterval = window.prompt("Enter max speed (60fps or above is recommended):", 60);
+        const maxInterval = window.prompt("Enter max speed (60ups or above is recommended):", 60);
         var onInterval = function(){
             var elements = document.querySelectorAll(".bar");
             console.log(elements);
@@ -68,7 +67,7 @@
                 document.querySelector("#contentWrapper").appendChild(newElement);
                 for(i = 0; i < elements.length; i++){
                     var height = Number(elements[i].style.height.replace("px",""));
-                    height = height + Math.ceil(Math.random() * 7.5);
+                    height = height + Math.ceil(Math.random() * 7.25);
                     elements[i].style.height = height + "px";
                 }
             }
@@ -85,7 +84,7 @@
                 document.querySelector("#contentWrapper").appendChild(newElement);
                 for(i = 0; i < elements.length; i++){
                     var height = Number(elements[i].style.height.replace("px",""));
-                    height = height + Math.ceil(Math.random() * 7.5);
+                    height = height + Math.ceil(Math.random() * 7.75);
                     elements[i].style.height = height + "px";
                 }
             }
@@ -99,7 +98,6 @@
         }
         window.onload = start;
     </script>
-    <div id="t1"></div>
     <div id="t2"></div>
     <div id="contentWrapper">
     </div>
