@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bored</title>
+    <style>
+    body{
+        background: black;
+        color: rgba(255, 255, 255, 0.4);
+        overflow: hidden;
+    }
+    .bar{
+        position: absolute;
+        top: 0px;
+        width: 1px;
+        animation: background 1.5s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+    }
+    .bar2{
+        position: absolute;
+        top: 0px;
+        width: 1px;
+        animation: background2 1.5s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+    }
+    .bar3{
+        position: absolute;
+        bottom: 0px;
+        width: 1px;
+        animation: background3 1.5s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+    }
+    .bar4{
+        position: absolute;
+        bottom: 0px;
+        width: 1px;
+        animation: background4 1.5s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+    }
+    #t2{
+        float: right;
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    @keyframes background{
+        0%{
+            background: rgba(255, 255, 255, 0.6);
+        }
+        50%{
+            background: rgba(255, 0, 0, 0.6);
+        }
+        100%{
+            background: rgba(255, 255, 255, 0.6);
+        }
+    }
+    @keyframes background2{
+        0%{
+            background: rgba(255, 255, 255, 0.6);
+        }
+        50%{
+            background: rgba(43, 255, 0, 0.6);
+        }
+        100%{
+            background: rgba(255, 255, 255, 0.6);
+        }
+    }
+    @keyframes background3{
+        0%{
+            background: rgba(255, 255, 255, 0.6);
+        }
+        50%{
+            background: rgba(251, 255, 0, 0.6);
+        }
+        100%{
+            background: rgba(255, 255, 255, 0.6);
+        }
+    }
+    @keyframes background4{
+        0%{
+            background: rgba(255, 255, 255, 0.6);
+        }
+        50%{
+            background: rgba(4, 0, 255, 0.6);
+        }
+        100%{
+            background: rgba(255, 255, 255, 0.6);
+        }
+    }
+    </style>
+</head>
+<body>
+    <script>
+        const maxInterval = window.prompt("Enter max speed (60ups or above is recommended):", 60);
+        var onInterval = function(){
+            var elements = document.querySelectorAll(".bar");
+            console.log(elements);
+            if(elements.length <= innerWidth){
+                var newElement = document.createElement("div");
+                newElement.className = "bar";
+                newElement.style.left = elements.length + "px";
+                newElement.style.transform = "rotate(-" + (Math.random() * 15) + "deg)";
+                document.querySelector("#contentWrapper").appendChild(newElement);
+                for(i = 0; i < elements.length; i++){
+                    var height = Number(elements[i].style.height.replace("px",""));
+                    height = height + 1;
+                    elements[i].style.height = height + "px";
+                }
+            }
+        }
+        var onInterval2 = function(){
+            var elements = document.querySelectorAll(".bar2");
+            console.log(elements);
+            if(elements.length <= innerWidth){
+                var newElement = document.createElement("div");
+                newElement.className = "bar2";
+                newElement.style.right = elements.length + "px";
+                newElement.style.transform = "rotate(" + (Math.random() * 15) + "deg)";
+                document.querySelector("#contentWrapper").appendChild(newElement);
+                for(i = 0; i < elements.length; i++){
+                    var height = Number(elements[i].style.height.replace("px",""));
+                    height = height + 1;
+                    elements[i].style.height = height + "px";
+                }
+            }
+        }
+        var onInterval3 = function(){
+            var elements = document.querySelectorAll(".bar3");
+            console.log(elements);
+            if(elements.length <= innerWidth){
+                var newElement = document.createElement("div");
+                newElement.className = "bar3";
+                newElement.style.right = elements.length + "px";
+                newElement.style.transform = "rotate(" + (Math.random() * 15) + "deg)";
+                document.querySelector("#contentWrapper").appendChild(newElement);
+                for(i = 0; i < elements.length; i++){
+                    var height = Number(elements[i].style.height.replace("px",""));
+                    height = height + 1;
+                    elements[i].style.height = height + "px";
+                }
+            }
+        }
+        var onInterval4 = function(){
+            var elements = document.querySelectorAll(".bar4");
+            console.log(elements);
+            if(elements.length <= innerWidth){
+                var newElement = document.createElement("div");
+                newElement.className = "bar4";
+                newElement.style.left = elements.length + "px";
+                newElement.style.transform = "rotate(-" + (Math.random() * 15) + "deg)";
+                document.querySelector("#contentWrapper").appendChild(newElement);
+                for(i = 0; i < elements.length; i++){
+                    var height = Number(elements[i].style.height.replace("px",""));
+                    height = height + 1;
+                    elements[i].style.height = height + "px";
+                }
+            }
+        }
+        var start = function(){
+            setInterval(onInterval, 1000 / maxInterval);
+            setInterval(onInterval2, 1000 / maxInterval);
+            setInterval(onInterval3, 1000 / maxInterval);
+            setInterval(onInterval4, 1000 / maxInterval);
+        }
+        window.onload = start;
+    </script>
+    <div id="t2"></div>
+    <div id="contentWrapper">
+    </div>
+</body>
+</html>
