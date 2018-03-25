@@ -1,21 +1,31 @@
 <script>
     var gear;
-    var lastPosition;
+    var lastPosition = -1;
     var refreshRate = 60; // fps; reduce for less overhead
     var animation = "rotate(*deg)"; // css style to apply [Wildcard is *]
-    var link = 0.5; //what to divide or multiply scrollTop by
+    var link = 0.2; //what to divide or multiply scrollTop by
+    var change = "request"; 
 
-    function replace(){
-        if(lastPosition != document.body.scrollTop){ // Prevents unnecessary recursion
+    function replace(e){
+        if(lastPosition != document.body.scrollTop && change == "request"){ // Prevents unnecessary recursion
                 lastPosition = document.body.scrollTop; // updates the last position to current
-                gear.style.transform = animation.replace("*", Math.round(lastPosition * link)); // applies new style to the gear
+                gear.style.transform = animation.replace("*", lastPosition * link); // applies new style to the gear
+                gear.style.filter = "blur(" + lastPosition / 250 + "px)";
+                gear.style.background = "rgb(0,0," + lastPosition / 10 + ")"
         }
+        requestAnimationFrame(replace);
+    }
+    window.onscroll = function(){
+            if(change == "event"){
+                gear.style.transform = animation.replace("*", document.body.scrollTop * link); // applies new style to the gear
+                gear.style.filter = "blur(" + document.body.scrollTop / 250 + "px)";
+                gear.style.background = "rgb(0,0," + document.body.scrollTop / 10 + ")"
+            }
     }
 
     function setup(){
-        lastPosition = document.body.scrollTop;
         gear = document.querySelector(".gear");
-        setInterval(replace, 1000 / refreshRate); // 1000 / 60 = 16.666... Invokes function replace to update for each frame
+        requestAnimationFrame(replace); // 1000 / 60 = 16.666... Invokes function replace to update for each frame
     }
     window.addEventListener("DOMContentLoaded", setup);
 </script>
