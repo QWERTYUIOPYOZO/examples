@@ -55,7 +55,6 @@
 </head>
 <body>
     <script>
-        const maxInterval = window.prompt("Enter max speed (60ups or above is recommended):", 60);
         var onInterval = function(){
             var elements = document.querySelectorAll(".bar");
             console.log(elements);
@@ -71,6 +70,7 @@
                     elements[i].style.height = height + "px";
                 }
             }
+            requestAnimationFrame(onInterval);
         }
         var onInterval2 = function(){
             var elements = document.querySelectorAll(".bar2");
@@ -91,10 +91,11 @@
             else{
                 document.querySelector("#t2").innerText = "";
             }
+            requestAnimationFrame(onInterval2);
         }
         var start = function(){
-            setInterval(onInterval, 1000 / maxInterval);
-            setInterval(onInterval2, 1000 / maxInterval);
+            requestAnimationFrame(onInterval);
+            requestAnimationFrame(onInterval2);
         }
         window.onload = start;
     </script>
